@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+
+{% endblock %}
+
+
+{% block main %}
+    <table class="indexTable">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Transacted</th>
+        </tr>
+
+        {% for item in portfolio %}
+            <tr>
+                <th>{{item.symbol}}</th>
+                <th>{{item.shares}}</th>
+                <th>{{item.price | round(2)}}</th>
+                <th>{{item.time}}</th>
+            </tr>
+        {% endfor %}
+
+    </table>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+
+{% endblock %}
+
+
+{% block main %}
+
+    <table class="indexTable">
+        <tr>
+            <th>Symbol</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>TOTAL</th>
+
+        </tr>
+
+        {% for item in portfolio %}
+            <tr>
+                <th>{{ item.symbol }}</th>
+                <th>{{ item.shares }}</th>
+                <th>{{ item.price | round(2) }}</th>
+                <th>{{ item.total | round(2) }}</th>
+                <th class="left-align">
+                    <form  action="/" method="post">
+                        <input type="hidden" name="symbol" value="{{ item.symbol }}">
+                        <input autocomplete="off" autofocus  name="shares" placeholder="{{ item.symbol }}" type="number" min="1" style="width: 15%">
+                        <button class="btn btn-primary" type="submit">Buy</button>
+                    </form>
+                </th>
+            </tr>
+
+        {% endfor %}
+
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Cash</th>
+            <th>{{ cash | round(2) }}</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>TOTAL</th>
+            <th>{{ total | round(2) }}</th>
+        </tr>
+    </table>
+
+{% endblock %}
